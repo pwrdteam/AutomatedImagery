@@ -1,0 +1,351 @@
+.AdBg{
+    background-image: url(./images/adbackground/blue.jpg);
+}
+
+.WebBg{
+    /* background-image:url(images/adbackground/blue.jpg);      */
+}
+            
+
+header{
+    position: relative;
+    margin:0;
+    padding: 0;
+    min-height: 75px;
+}
+img{
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100%;
+}
+i.white{
+    color:#fff;
+}
+#top-bar{
+    padding:1rem;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    justify-content: center;
+}
+#top-bar h2{
+    position: relative;
+    color:#f9f9f9;
+    font-size: 2.5rem;
+    font-family: cursive;
+    user-select: none;
+}
+#top-bar h2:before {
+    content: '';
+    position: absolute;
+    background-color: #17a2b8;
+    top: 0;
+    left: -10px;
+    width: 300px;
+    height: 50px;
+    z-index: -2;
+}
+#top-bar h2:after{
+    content: '';
+    position: absolute;
+    background-color: orange;
+    top: 0;
+    right: -10px;
+    width: 210px;
+    height: 50px;
+    z-index: -1;
+    box-shadow: 10px 10px 10px #888888;
+}
+.usr-inpt{
+    position: relative;
+}
+#chatbot{
+    min-width: 20%;
+    right: 0;
+       transition: all ease .4s;
+    -webkit-animation: zoom-in 0.5s;
+    animation: zoom-in 0.5s;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.subheading{
+    padding: 1% 2%;
+    background-color: #17a2b8;
+    color: #fff;
+    font-size: 15pt;
+}
+.subheading h3{
+        font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+
+
+.panel {
+    margin-bottom: 0px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.panel-primary {
+    border-color: #428bca;
+}
+.panel-body{
+    margin:0;
+    padding: 0.5rem;
+    min-width: 350px;
+    min-height: 350px;
+    min-height: 50%;
+    height: 350px;
+    overflow-y: scroll;
+}
+.border {
+	border: 1px solid #dee2e6!important
+}
+.rounded {
+	border-radius: .25rem!important
+}
+.border-info {
+	border-color: #17a2b8!important
+}
+#usr-inpt input#input{
+    padding-right:12%;
+}
+textarea#response{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+textarea#response::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+textarea#response::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+textarea#response::-webkit-scrollbar-thumb {
+  background: #17a2b8; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+textarea#response::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+#rec{
+	border: 1px solid #e1e1e1;
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 100%;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    right: 0.5rem;
+    top: 18%;
+}
+.dwnload{
+	background: url(./images/download.png) no-repeat;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background-position: center;
+    transition: all ease 0.5s;
+    -webkit-animation: opacity 0.5s; /* Safari 4.0 - 8.0 */
+    animation: opacity 0.5s;
+    display: none;
+}
+#banner-pnl ul.nav li{
+ cursor: pointer;
+}
+#banner-pnl ul.nav li a{
+    text-decoration:none;
+}
+#banner-pnl ul.nav li a:hover{
+    text-decoration:none;
+}
+#hdnBannerdisplayBanner{
+    max-width: 250px; border: 1px solid #17a2b8;
+    padding: 0.2rem;
+    border-radius: 5px;
+}
+
+
+
+
+.tab-content{
+    margin:0;
+    padding:1rem;
+    border:1px solid #17a2b8;
+    border-radius: 2px;
+}
+.nav-tabs .nav-item{
+    margin-bottom: -1px
+}
+#banner-pnl .nav-tabs .nav-item.show .nav-link,
+#banner-pnl .nav-tabs .nav-link.active {
+	color: #495057;
+	background-color: #fff;
+	border-color: #17a2b8 #17a2b8 #fff
+}
+
+
+
+
+#banner-pnl ul.nav li a.nav-link.active{
+    font-weight: 400;
+    color:#17a2b8;
+}
+.dvAdClsText{
+    margin: -7px auto;
+    font-size: 16px;
+    text-align: center;
+	/* color: #d17c7c; */
+	/* color: #00bfff; */
+	color: #00FFFF;
+	font-style: oblique;
+	position: absolute;
+	top: 284px;
+	background-color: tomato;
+}
+.dvWebClsText{
+    margin: 75px auto;
+    font-size: 20px;
+    text-align: center;
+	color: #00FFFF;
+	background-color: tomato;
+    position: absolute;
+    left: -298px;
+
+}
+
+#btnAdAction
+{
+	color: #00FF00;
+	position: absolute;
+	left: 81px;
+	top: 315px;
+}
+
+
+#btnAction
+{
+	color: #00FF00;
+	position: absolute;
+    top: 196px;
+}
+
+#dvAdDesc{
+	margin: 0 auto;
+    text-align: center; 
+}
+.BgImage {
+    background-image: linear-gradient(rgba(243, 235, 235, 0.5), rgba(243, 235, 235, 0.5));
+	border-radius: 8px;
+    height: 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin: 2% 10;
+    -webkit-animation: scale-3d 1s;
+    animation: scale-3d 1s;
+	display: inline-block;
+}
+#dvImage{
+    position: absolute;
+    top: 5px;
+    /* display: inline-flex; */
+}
+#dvDesc{
+    position: absolute;
+    right: 2%;
+}
+.imgFront {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    right: -13rem;
+    min-width: 10%;
+    width: 250px;
+}
+
+.imgMax{
+	max-width: 45%;
+	right: 1rem;
+    bottom: -1rem;
+}
+.dvClsImage{
+	text-align: center;
+	margin-top: 10px;
+}
+.imgBack {
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 8px;
+	width: 250px;
+	top: 15%;
+}
+
+.ConvMe{
+text-align:right;
+width:auto;
+position: relative;
+}
+.ConvCB{
+    text-align: left;
+    margin: 0;
+    width: auto;
+    padding: 1%;
+    position: relative;
+    padding-left: 3%;
+    display: flex;  
+    
+}
+
+.ConvMe span{   
+    border-radius: 10px;
+    margin: 0;
+    padding: 1%;
+    background-color: transparent;
+    border: 1px solid skyblue;
+    font-size:1rem;
+    position: relative;
+}
+.ConvCB p{
+    background-color: #8bcdd82e;
+    border-radius: 5px;
+    margin-top: 1%;
+    margin-left: 2rem;
+    display: flex;
+    width:100%;
+    padding: 1%;
+    font-size:1rem;
+    border: 1px solid #91d091;
+    line-height: 0.5rem;
+    text-align: justify;
+    line-height: 23px;
+}
+
+.ConvCB:before{
+    content: '';
+    position: absolute;
+    background: url(https://www.ometrics.com/blog/wp-content/uploads/2018/04/chatbot-icon-250.png) no-repeat;
+    width: 40px;
+    height: 50px;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    background-size: contain;
+}
