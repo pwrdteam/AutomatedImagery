@@ -2,6 +2,7 @@ import React from 'react';
 import {Tabs, Tab} from 'react-bootstrap-tabs';
 import '../css/bootstrap.min.css';
 import '../css/style.css';
+import { transform } from '@babel/core';
 //import 'bootstrap';
 
 export const BannerComponent = (props) => {
@@ -21,8 +22,9 @@ export const BannerComponent = (props) => {
             </div>
         </section>
 
-        <div id="chatbot" className="fixed-right-bottom">
-            
+		
+
+        <div id="chatbot" className="fixed-right-bottom chatbot_initial">
 			<div  className="panel panel-primary">
 
             <div className="subheading" onClick={props.showHide}><h3>Chatbot</h3></div>
@@ -56,6 +58,8 @@ export const CreateTabs = (props) => {
 		<React.Fragment>
 			<Tabs onSelect={(index, label) => console.log(`Selected Index: ${index}, Label: ${label}`)} selected={0}>
 				<Tab id="ad" label="AD BANNERS">
+					<div className="row">
+						<div className="col-md-3">
 					<div  id="adBannerDiv" className="tab-pane fade in active">
 						<div id="hdnBannerdisplayBanner">
 						<table className="dvBannerMain BgImage AdBg"id="dvAdBanner">
@@ -72,9 +76,11 @@ export const CreateTabs = (props) => {
 							</td></tr>
 							</tbody>
 						</table>
-						</div>
+						</div>	
 						<p id="alldisplayBanner"></p>
-					</div>				
+					</div>
+					</div>	
+					</div>
 				</Tab>
 				<Tab id="web" label="WEB BANNERS">
 					<div id="webBannerDiv" className="tab-pane fade in">
