@@ -2,8 +2,8 @@ import React from 'react';
 import {Tabs, Tab} from 'react-bootstrap-tabs';
 import '../css/bootstrap.min.css';
 import '../css/style.css';
-import { transform } from '@babel/core';
 //import 'bootstrap';
+import * as constVal from '../const/const';
 
 export const BannerComponent = (props) => {
 	//console.log("BannerComponent",props);
@@ -22,9 +22,8 @@ export const BannerComponent = (props) => {
             </div>
         </section>
 
-		
-
-        <div id="chatbot" className="fixed-right-bottom chatbot_initial">
+        <div id="chatbot" className="fixed-right-bottom">
+            
 			<div  className="panel panel-primary">
 
             <div className="subheading" onClick={props.showHide}><h3>Chatbot</h3></div>
@@ -53,20 +52,22 @@ export const BannerComponent = (props) => {
 };
 
 export const CreateTabs = (props) => {
+	const BgImg = { backgroundImage: `url('${constVal.getImage('bgDefault')}')` };
 	//console.log("CreateTabs",props);
+	// console.log("imageSrc",imageSrc);
+	// let val = constVal.getImage('red');
+	// console.log('val',val,constBGImg);
 	return (
 		<React.Fragment>
 			<Tabs onSelect={(index, label) => console.log(`Selected Index: ${index}, Label: ${label}`)} selected={0}>
 				<Tab id="ad" label="AD BANNERS">
-					<div className="row">
-						<div className="col-md-3">
 					<div  id="adBannerDiv" className="tab-pane fade in active">
 						<div id="hdnBannerdisplayBanner">
-						<table className="dvBannerMain BgImage AdBg"id="dvAdBanner">
+						<table className="dvBannerMain BgImage AdBg"id="dvAdBanner" style={BgImg}>
 						<tbody>
 							<tr><td>
 								<p className="dvClsImage"id="dvAdImage">
-									<img id="imgAdBack"className="imgBack"src={require('../css/images/bannerProducts/headphone.png')}alt="Image1"/>									
+									<img id="imgAdBack"className="imgBack"src={constVal.getImage('headphone')}alt="Image1"/>									
 								</p>
 								<h2 className="dvAdClsText"id="dvAdText">Add a description here</h2>
 								<p id="dvAdDesc">
@@ -76,20 +77,18 @@ export const CreateTabs = (props) => {
 							</td></tr>
 							</tbody>
 						</table>
-						</div>	
+						</div>
 						<p id="alldisplayBanner"></p>
-					</div>
-					</div>	
 					</div>
 				</Tab>
 				<Tab id="web" label="WEB BANNERS">
 					<div id="webBannerDiv" className="tab-pane fade in">
 						<div id="hdnBanner">
-							<table className=" col-md-12 BgImage WebBg"id="dvBanner">						
+							<table className=" col-md-12 BgImage WebBg"id="dvBanner" style={BgImg}>						
 								<tbody>
 								<tr><td>
 									<div className=" col-md-3 dvClsImage"id="dvImage">
-										<img id="imgBack"className="imgBack "src={require('../css/images/bannerProducts/8.png')} alt="Image1"/>
+										<img id="imgBack"className="imgBack "src={constVal.getImage('eight')} alt="Image1"/>
 										<img id="imgFront"className="imgFront "src={require('../css/images/bannerProducts/headphone.png')} alt="Image2"/>
 									</div>
 									<div className="col-md-3"id="dvDesc">

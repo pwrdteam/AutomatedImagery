@@ -239,7 +239,7 @@ export default class BannerContainer extends Component {
 			  });
 			
 		} catch (error) {
-			console.error('send error',error);				
+			console.error('send error',error);
 		}		
 		}
 		
@@ -250,34 +250,32 @@ export default class BannerContainer extends Component {
 				console.log("isEmpty All input received ",isEmpty,data.result.parameters);
 				console.log("Whats the value?",data.result.parameters);
 				if(data.result.parameters.type.toLowerCase() === "web"){			
-					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 2){
-						let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;						
+					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 2) {
+						document.getElementsByClassName("nav-link")[1].click();
+						let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;
 						bannerReal = banner;
-						bannerReal = bannerReal.replace('bgDefault', data.result.parameters.background);
-						bannerReal = bannerReal.replace('8',data.result.parameters.products[0]);
-						bannerReal = bannerReal.replace('headphone', data.result.parameters.products[1]);
+
+						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.jpg', constVal.getImage(data.result.parameters.background));
+						bannerReal = bannerReal.replace('/static/media/8.18a578a2.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
+						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[1].replace(' ','_')));
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
 						let allBanner = document.getElementById('allBanner');
-						allBanner.appendChild(banner);
-						document.getElementById('web').click();
+						allBanner.insertAdjacentHTML('beforeend',bannerReal);
 
 					}
 				}
-				// else if (data.result.parameters.type.toLowerCase() === "ad"){
-				// 	if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 1)
-				// 	{
-				// 	let banner = $('#hdnBannerdisplayBanner').html();
-				// 	bannerReal = banner;
-				// 	bannerReal = bannerReal.replace('blue', data.result.parameters.background);
-				// 	bannerReal = bannerReal.replace('8', data.result.parameters.products[0]);
-				// 	bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" product.');
-				// 	//bannerReal = bannerReal.replace('Buy now', data.result.parameters.CPA);                                                         
-				// 	console.log("bannerReal");
-				// 	$('#alldisplayBanner').append(bannerReal);
-				// 	$("#ad").trigger("click");
-				// 	}
-					
-				// }
+				else if (data.result.parameters.type.toLowerCase() === "ad"){
+					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 1) {
+						document.getElementsByClassName("nav-link")[0].click();
+						let banner = document.getElementById('hdnBannerdisplayBanner').innerHTML,bannerReal;
+						bannerReal = banner;
+						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.jpg', constVal.getImage(data.result.parameters.background));
+						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
+						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
+						let alldisplayBanner = document.getElementById('alldisplayBanner');
+						alldisplayBanner.insertAdjacentHTML('beforeend',bannerReal);
+					}					
+				}
 				else {
 					console.log("generateBanner Banner_Type ",data.result.parameters.type);					
 				}
@@ -332,11 +330,11 @@ export default class BannerContainer extends Component {
     render() {
         return (
             <React.Fragment>
-				<BannerComponent
-                    showHide = {this.showHide}
-                    onFormSubmit = {this.onFormSubmit}
-                    switchRecognition = {this.switchRecognition}
-				/>
+							<BannerComponent
+								showHide = {this.showHide}
+								onFormSubmit = {this.onFormSubmit}
+								switchRecognition = {this.switchRecognition}
+							/>
             </React.Fragment>
 
         )
