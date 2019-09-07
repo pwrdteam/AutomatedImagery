@@ -255,7 +255,7 @@ export default class BannerContainer extends Component {
 						let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;
 						bannerReal = banner;
 
-						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.jpg', constVal.getImage(data.result.parameters.background));
+						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
 						bannerReal = bannerReal.replace('/static/media/8.18a578a2.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
 						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[1].replace(' ','_')));
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
@@ -269,7 +269,7 @@ export default class BannerContainer extends Component {
 						document.getElementsByClassName("nav-link")[0].click();
 						let banner = document.getElementById('hdnBannerdisplayBanner').innerHTML,bannerReal;
 						bannerReal = banner;
-						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.jpg', constVal.getImage(data.result.parameters.background));
+						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
 						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
 						let alldisplayBanner = document.getElementById('alldisplayBanner');
