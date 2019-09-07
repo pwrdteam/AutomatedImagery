@@ -21,13 +21,13 @@ export default class BannerContainer extends Component {
 		this.checkIsNullProps = this.checkIsNullProps.bind(this);
 		this.generateBanner = this.generateBanner.bind(this);
 		this.toggleTabs = this.toggleTabs.bind(this);
+		this.initializeSpeech = this.initializeSpeech.bind(this);
 	
 		this.state = {
 			isRecording: false,
 			conversationMe: [],
 			conversationChatBot: [],
-			recognizer: new window.webkitSpeechRecognition(),
-			isHappyMsgCnt: 0
+			//recognizer: new window.webkitSpeechRecognition(),
 		};
 		
 		}
@@ -47,14 +47,29 @@ export default class BannerContainer extends Component {
 		
 		initializeRecognition(){
 			try {
-				if(!SpeechRecognition){		
-					var SpeechRecognition = (
-					   window.SpeechRecognition ||
-					   window.webkitSpeechRecognition || 
-					   window.mozSpeechRecognition || 
-					   window.msSpeechRecognition
-					  );
-					
+					var Speech_Recognition = new (window.SpeechRecognition ||
+																	window.webkitSpeechRecognition ||
+																	window.mozSpeechRecognition ||
+																	window.msSpeechRecognition)();
+					if (!Speech_Recognition) {
+						alert('Voice mic input is not supported in this version or browser,try with different version or browser.');
+						console.log("Voice mic input is not available.");						
+					} else {
+						this.setState((state, props) => ({
+							...state.recognizer = Speech_Recognition
+						}),this.initializeSpeech);						
+					}
+			}
+			catch(error) {
+			  console.error('initializeRecognition error',error);
+				alert('Voice mic input is not supported in this version or browser,try with different version or browser.');
+				console.log("Voice mic input is not available.");	
+			}
+		}
+		
+		initializeSpeech(){
+			try {
+				if(!!this.state.recognizer){
 					this.state.recognizer.continuous = true;                
 					this.state.recognizer.onstart = this.updateRec;
 					
@@ -71,14 +86,13 @@ export default class BannerContainer extends Component {
 					};
 					this.state.recognizer.onend = this.stopRecognition;
 					this.state.recognizer.lang = "en-US";
-					//this.state.recognizer.lang = 'en-US';
 					//this.state.recognizer.interimResults = false;
 					//this.state.recognizer.maxAlternatives = 1;
 					//this.state.recognizer.start();
 				}
 			}
 			catch(error) {
-			  console.error('initializeRecognition error',error);
+			  console.error('initializeSpeech error',error);
 			}
 		}
 	
@@ -230,9 +244,11 @@ export default class BannerContainer extends Component {
 					}
 					this.setcommonResponse(respText,"ChatBot");
 					this.readOutLoud(respText);
+					if (!!res.data) {
+						this.generateBanner(res.data);						
+					}
 					taResponse.scrollTop = taResponse.scrollHeight;
 					body.scrollTop = body.scrollHeight;
-					this.generateBanner(res.data);
 			  })
 			  .catch((err) => {
 				  console.log('axios.post err',err);
@@ -249,7 +265,6 @@ export default class BannerContainer extends Component {
 			let isEmpty = this.checkIsNullProps(data.result.parameters);
 			if(!isEmpty){
 				console.log("isEmpty All input received ",isEmpty,data.result.parameters);
-				console.log("Whats the value?",data.result.parameters);
 				if(data.result.parameters.type.toLowerCase() === "web"){			
 					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 2) {
 						document.getElementsByClassName('tab')[0].style.display='block';
@@ -263,7 +278,6 @@ export default class BannerContainer extends Component {
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
 						let allBanner = document.getElementById('allBanner');
 						allBanner.insertAdjacentHTML('beforeend',bannerReal);
-						window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 
 					}
 				}
@@ -278,12 +292,12 @@ export default class BannerContainer extends Component {
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
 						let alldisplayBanner = document.getElementById('alldisplayBanner');
 						alldisplayBanner.insertAdjacentHTML('beforeend',bannerReal);
-						window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
-					}					
+					}
 				}
 				else {
 					console.log("generateBanner Banner_Type ",data.result.parameters.type);					
 				}
+				window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 			}
 		}
 		else{
