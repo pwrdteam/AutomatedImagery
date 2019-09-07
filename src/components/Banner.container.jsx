@@ -20,6 +20,7 @@ export default class BannerContainer extends Component {
 		this.IsValidJSONString = this.IsValidJSONString.bind(this);
 		this.checkIsNullProps = this.checkIsNullProps.bind(this);
 		this.generateBanner = this.generateBanner.bind(this);
+		this.toggleTabs = this.toggleTabs.bind(this);
 	
 		this.state = {
 			isRecording: false,
@@ -251,7 +252,8 @@ export default class BannerContainer extends Component {
 				console.log("Whats the value?",data.result.parameters);
 				if(data.result.parameters.type.toLowerCase() === "web"){			
 					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 2) {
-						document.getElementsByClassName("nav-link")[1].click();
+						document.getElementsByClassName('tab')[0].style.display='block';
+						document.getElementsByClassName("tablinks")[1].click();
 						let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;
 						bannerReal = banner;
 
@@ -261,12 +263,14 @@ export default class BannerContainer extends Component {
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
 						let allBanner = document.getElementById('allBanner');
 						allBanner.insertAdjacentHTML('beforeend',bannerReal);
+						window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 
 					}
 				}
 				else if (data.result.parameters.type.toLowerCase() === "ad"){
 					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 1) {
-						document.getElementsByClassName("nav-link")[0].click();
+						document.getElementsByClassName('tab')[0].style.display='block';
+						document.getElementsByClassName("tablinks")[0].click();
 						let banner = document.getElementById('hdnBannerdisplayBanner').innerHTML,bannerReal;
 						bannerReal = banner;
 						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
@@ -274,6 +278,7 @@ export default class BannerContainer extends Component {
 						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
 						let alldisplayBanner = document.getElementById('alldisplayBanner');
 						alldisplayBanner.insertAdjacentHTML('beforeend',bannerReal);
+						window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 					}					
 				}
 				else {
@@ -326,6 +331,20 @@ export default class BannerContainer extends Component {
 			chatbotElement.style.transform = constVal.fixedMatrixVal;
 		}
 	}
+	
+ toggleTabs(evt, tabId) {
+	var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+	document.getElementById(tabId).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 
     render() {
         return (
@@ -334,6 +353,7 @@ export default class BannerContainer extends Component {
 								showHide = {this.showHide}
 								onFormSubmit = {this.onFormSubmit}
 								switchRecognition = {this.switchRecognition}
+								toggleTabs = {this.toggleTabs}
 							/>
             </React.Fragment>
 

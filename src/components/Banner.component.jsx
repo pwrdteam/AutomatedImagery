@@ -7,6 +7,7 @@ import * as constVal from '../const/const';
 
 export const BannerComponent = (props) => {
 	//console.log("BannerComponent",props);
+	const BgImg = { backgroundImage: `url('${constVal.getImage('bgDefault')}')` };
     return (
         <React.Fragment>
         <div className="container-fluid">
@@ -18,49 +19,13 @@ export const BannerComponent = (props) => {
         </header>
         <section id="banner-pnl">
             <div  className="col-md-12">
-            <CreateTabs />
-            </div>
-        </section>
+					
+				<div className="tab">
+					<button className="tablinks" onClick={(event)=> props.toggleTabs(event, 'AD_Banner')}>AD Banner</button>
+					<button className="tablinks" onClick={(event)=> props.toggleTabs(event, 'Web_Banner')}>Web Banner</button>
+				</div>
 
-        <div id="chatbot" className="fixed-right-bottom">
-            
-			<div  className="panel panel-primary">
-
-            <div className="subheading" onClick={props.showHide}><h3>Chatbot</h3></div>
-                      
-                    <div  id="response" className="panel-body"></div>
-               
-           
-				<hr/>           
-            <div className="col-md-12">
-            <div className="form-group usr-inpt" id="usr-inpt">
-                <form id="mymsg" method="POST" onSubmit={props.onFormSubmit}>
-                        <input id="input" name="input" type="text" className="form-control" placeholder="Type here..." />                            
-                </form>
-                <button id="rec" type="button" onClick={props.switchRecognition}>
-                <i className="fa fa-microphone" aria-hidden="true"></i>
-                </button>
-            </div>
-            </div>
-            
-			</div>
-        </div>
-
-        </div>
-        </React.Fragment>
-    )
-};
-
-export const CreateTabs = (props) => {
-	const BgImg = { backgroundImage: `url('${constVal.getImage('bgDefault')}')` };
-	//console.log("CreateTabs",props);
-	// console.log("imageSrc",imageSrc);
-	// let val = constVal.getImage('red');
-	// console.log('val',val,constBGImg);
-	return (
-		<React.Fragment>
-			<Tabs onSelect={(index, label) => console.log(`Selected Index: ${index}, Label: ${label}`)} selected={0}>
-				<Tab id="ad" label="AD BANNERS">
+				<div id="AD_Banner" className="tabcontent">
 					<div  id="adBannerDiv" className="tab-pane fade in active">
 						<div id="hdnBannerdisplayBanner">
 						<table className="dvBannerMain BgImage AdBg"id="dvAdBanner" style={BgImg}>
@@ -80,8 +45,9 @@ export const CreateTabs = (props) => {
 						</div>
 						<p id="alldisplayBanner"></p>
 					</div>
-				</Tab>
-				<Tab id="web" label="WEB BANNERS">
+				</div>
+
+				<div id="Web_Banner" className="tabcontent">
 					<div id="webBannerDiv" className="tab-pane fade in">
 						<div id="hdnBanner">
 							<table className=" col-md-12 BgImage WebBg"id="dvBanner" style={BgImg}>						
@@ -102,8 +68,29 @@ export const CreateTabs = (props) => {
 						</div>
 						<p id="allBanner"></p>
 					</div>
-				</Tab>			
-			</Tabs>
-		</React.Fragment>
-	)
-  };
+				</div>
+            </div>
+        </section>
+
+        <div id="chatbot" className="fixed-right-bottom">            
+			<div  className="panel panel-primary">
+            <div className="subheading" onClick={props.showHide}><h3>Chatbot</h3></div>                      
+				<div  id="response" className="panel-body"></div>    
+				<hr/>           
+            <div className="col-md-12">
+            <div className="form-group usr-inpt" id="usr-inpt">
+                <form id="mymsg" method="POST" onSubmit={props.onFormSubmit}>
+                        <input id="input" name="input" type="text" className="form-control" placeholder="Type here..." />                            
+                </form>
+                <button id="rec" type="button" onClick={props.switchRecognition}>
+                <i className="fa fa-microphone" aria-hidden="true"></i>
+                </button>
+            </div>
+            </div>            
+			</div>
+        </div>
+
+        </div>
+        </React.Fragment>
+    )
+};
