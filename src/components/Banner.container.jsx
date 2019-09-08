@@ -100,23 +100,30 @@ export default class BannerContainer extends Component {
 		startRecognition() {
 			try {
 				if (!!this.state.recognizer) {
-					this.state.recognizer.start();
-					this.state.isRecording = true;
-					this.updateRec();
+					if (this.state.isRecording) {
+						this.stopRecognition();
+					} else {
+						this.state.recognizer.start();
+						this.state.isRecording = true;
+						this.updateRec();						
+					}
 			  }
 			  else{
 				  alert('Voice mic input is not supported in this version or browser,try with different version or browser.');
 				  console.log("Voice mic input is not available.");
 			  }
 			} catch (e) {
-				alert('Voice mic input is not supported in this version or browser,try with different version or browser.');
-				console.log("Voice mic input is not available. Error: "+e);
+				if (e.code && e.code != 11) {
+					alert('Voice mic input is not supported in this version or browser,try with different version or browser.');
+					console.log("Voice mic input is not available. Error: "+e);					
+				}
 			}
 		}
 	  
 		stopRecognition() {
 		  if (this.state.recognizer) {
-			this.state.recognizer.stop();
+				this.state.recognizer.stop();
+				this.state.recognizer.stop();
 			this.state.isRecording = false;
 		  }
 		  this.updateRec();
