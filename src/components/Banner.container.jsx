@@ -251,9 +251,7 @@ export default class BannerContainer extends Component {
 					}
 					this.setcommonResponse(respText,"ChatBot");
 					this.readOutLoud(respText);
-					if (!!res.data) {
-						this.generateBanner(res.data);						
-					}
+					this.generateBanner(res.data);
 					taResponse.scrollTop = taResponse.scrollHeight;
 					body.scrollTop = body.scrollHeight;
 			  })
@@ -268,43 +266,45 @@ export default class BannerContainer extends Component {
 		}
 		
 	generateBanner = (data) => {
-		if(Object.keys(data.result.parameters).length !== 0 && data.result.parameters.constructor === Object){
-			let isEmpty = this.checkIsNullProps(data.result.parameters);
-			if(!isEmpty){
-				console.log("isEmpty All input received ",isEmpty,data.result.parameters);
-				if(data.result.parameters.type.toLowerCase() === "web"){			
-					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 2) {
-						document.getElementsByClassName('tab')[0].style.display='block';
-						document.getElementsByClassName("tablinks")[1].click();
-						let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;
-						bannerReal = banner;
+		if(data.hasOwnProperty('result') && data.result.hasOwnProperty('parameters')){
+			if (Object.getOwnPropertyNames(data.result.parameters).length >= 1) {					
+				let isEmpty = this.checkIsNullProps(data.result.parameters);
+				if(!isEmpty){
+					console.log("isEmpty All input received ",isEmpty,data.result.parameters);
+					if(data.result.parameters.type.toLowerCase() === "web"){			
+						if(data.result.parameters.products.length >= 2) {
+							document.getElementsByClassName('tab')[0].style.display='block';
+							document.getElementsByClassName("tablinks")[1].click();
+							let banner = document.getElementById('hdnBanner').innerHTML,bannerReal;
+							bannerReal = banner;
 
-						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
-						bannerReal = bannerReal.replace('/static/media/8.18a578a2.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
-						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[1].replace(' ','_')));
-						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
-						let allBanner = document.getElementById('allBanner');
-						allBanner.insertAdjacentHTML('beforeend',bannerReal);
+							bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
+							bannerReal = bannerReal.replace('/static/media/8.18a578a2.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
+							bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[1].replace(' ','_')));
+							bannerReal = bannerReal.replace('Add a description here', 'This banner is about "'+data.result.parameters.products[0]+'" and "'+data.result.parameters.products[1]+'" products.');
+							let allBanner = document.getElementById('allBanner');
+							allBanner.insertAdjacentHTML('beforeend',bannerReal);
 
+						}
 					}
-				}
-				else if (data.result.parameters.type.toLowerCase() === "ad"){
-					if(data.result.parameters.background === data.result.parameters.background && data.result.parameters.products.length >= 1) {
-						document.getElementsByClassName('tab')[0].style.display='block';
-						document.getElementsByClassName("tablinks")[0].click();
-						let banner = document.getElementById('hdnBannerdisplayBanner').innerHTML,bannerReal;
-						bannerReal = banner;
-						bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
-						bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
-						bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
-						let alldisplayBanner = document.getElementById('alldisplayBanner');
-						alldisplayBanner.insertAdjacentHTML('beforeend',bannerReal);
+					else if (data.result.parameters.type.toLowerCase() === "ad"){
+						if(data.result.parameters.products.length >= 1) {
+							document.getElementsByClassName('tab')[0].style.display='block';
+							document.getElementsByClassName("tablinks")[0].click();
+							let banner = document.getElementById('hdnBannerdisplayBanner').innerHTML,bannerReal;
+							bannerReal = banner;
+							bannerReal = bannerReal.replace('/static/media/bgDefault.f671bf6d.png', constVal.getImage(data.result.parameters.background));
+							bannerReal = bannerReal.replace('/static/media/headphone.dd70be78.png', constVal.getImage(data.result.parameters.products[0].replace(' ','_')));
+							bannerReal = bannerReal.replace('Add a description here', 'This banner is about "' + data.result.parameters.products[0]+'" product.');
+							let alldisplayBanner = document.getElementById('alldisplayBanner');
+							alldisplayBanner.insertAdjacentHTML('beforeend',bannerReal);
+						}
 					}
+					else {
+						console.log("generateBanner Banner_Type ",data.result.parameters.type);					
+					}
+					window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 				}
-				else {
-					console.log("generateBanner Banner_Type ",data.result.parameters.type);					
-				}
-				window.scrollTo(0,document.getElementsByTagName('body')[0].scrollHeight);
 			}
 		}
 		else{
