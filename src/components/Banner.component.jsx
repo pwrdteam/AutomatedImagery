@@ -14,7 +14,7 @@ export const BannerComponent = (props) => {
         <header>
             <div className="col-md-12" id="top-bar">
                 <h2>CREATE BANNERS</h2>
-                <button id="btnDownloadImg" className="btn btn-outline pull-right dwnload " title="Download Banner"></button>
+                <button id="btnDownloadImg" className="btn btn-outline pull-right dwnload" onClick={props.downloadBanner} title="Download Banner"></button>
             </div>
         </header>
         <section id="banner-pnl">

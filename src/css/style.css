@@ -155,7 +155,7 @@ textarea#response::-webkit-scrollbar-thumb:hover {
     transition: all ease 0.5s;
     -webkit-animation: opacity 0.5s; /* Safari 4.0 - 8.0 */
     animation: opacity 0.5s;
-    display: none;
+    display: block;
 }
 #banner-pnl ul.nav li{
  cursor: pointer;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import html2canvas from 'html2canvas';
 import {BannerComponent} from './Banner.component';
 import axios from 'axios';
 import * as constVal from '../const/const';
@@ -22,6 +23,8 @@ export default class BannerContainer extends Component {
 		this.generateBanner = this.generateBanner.bind(this);
 		this.toggleTabs = this.toggleTabs.bind(this);
 		this.initializeSpeech = this.initializeSpeech.bind(this);
+		this.downloadBanner = this.downloadBanner.bind(this);
+		this.fnhtml2canvas = this.fnhtml2canvas.bind(this);
 	
 		this.state = {
 			isRecording: false,
@@ -353,19 +356,67 @@ export default class BannerContainer extends Component {
 		}
 	}
 	
- toggleTabs(evt, tabId) {
-	var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-	document.getElementById(tabId).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+	toggleTabs(evt, tabId) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(tabId).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	downloadBanner(e) {
+		try {
+			//console.log('downloadBanner called');
+			let ad = document.getElementById('AD_Banner');
+			if (ad.style.display==='block') {
+				let alldisplayBanner = document.getElementById('alldisplayBanner');
+				for (var i = 0; i < alldisplayBanner.children.length; i++) {
+					var childEle = alldisplayBanner.children[i];
+					this.fnhtml2canvas(childEle);
+				}				
+			} else {
+				let allBanner = document.getElementById('allBanner');
+				for (var i = 0; i < allBanner.children.length; i++) {
+					var childEle = allBanner.children[i];
+					this.fnhtml2canvas(childEle);
+				}
+			}
+		} catch (error) {
+			console.log('error in downloadBanner',error);
+		}
+ }
+
+ fnhtml2canvas(element){
+	try {	
+		html2canvas(element)
+		.then(canvas=> {
+
+			var imgageData = canvas.toDataURL("image/png");
+			var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+			
+			var element = document.createElement('a');
+			element.setAttribute('href', newData);
+			element.setAttribute('download', 'banner.jpg');
+
+			element.style.display = 'none';
+			document.body.appendChild(element);
+
+			element.click();
+			document.body.removeChild(element);		
+
+		}).catch(error => {
+			console.log('error in fnhtml2canvas html2canvas',error);
+		});	
+	} catch (error) {		
+		console.log('error in fnhtml2canvas',error);
+	}
+ }
+
 
     render() {
         return (
@@ -375,6 +426,7 @@ export default class BannerContainer extends Component {
 								onFormSubmit = {this.onFormSubmit}
 								switchRecognition = {this.switchRecognition}
 								toggleTabs = {this.toggleTabs}
+								downloadBanner = {this.downloadBanner}
 							/>
             </React.Fragment>
 
