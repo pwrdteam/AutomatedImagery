@@ -13,7 +13,7 @@ body{
     /* background-image: url("http://wallperio.com/data/out/251/minimal-wallpapers_609412072.jpg"); */
     /* background-image: url("http://www.4usky.com/data/out/67/164601898-origami-wallpapers.jpg"); */
     background-size: cover;
-    animation: shrink 10s infinite alternate;
+    /* animation: shrink 10s infinite alternate; */
     transition: all 0.5s ease;
 }
 
