@@ -13,7 +13,7 @@ export const BannerComponent = (props) => {
         <div className="container-fluid">
         <header>
             <div className="col-md-12" id="top-bar">
-                <h2>CREATE BANNERS</h2>
+                <div><a href="/"><h2>CREATE BANNERS</h2></a></div>
                 <button id="btnDownloadImg" className="btn btn-outline pull-right dwnload" onClick={props.downloadBanner} title="Download Banner"></button>
             </div>
         </header>
@@ -50,7 +50,7 @@ export const BannerComponent = (props) => {
 				<div id="Web_Banner" className="tabcontent">
 					<div id="webBannerDiv" className="tab-pane fade in">
 						<div id="hdnBanner">
-							<table className=" col-md-12 BgImage WebBg"id="dvBanner" style={BgImg}>						
+							<table className=" col-md-12 webBgImage WebBg"id="dvBanner" style={BgImg}>						
 								<tbody>
 								<tr><td>
 									<div className=" col-md-3 dvClsImage"id="dvImage">
@@ -60,7 +60,7 @@ export const BannerComponent = (props) => {
 									<div className="col-md-3"id="dvDesc">
 									<h2 className="dvWebClsText"id="dvText">Add a description here</h2>
 									<span className="dvClsAction"id="dvAction">
-										<button id="btnAction"className="btnClsAction btn btn-primary btn-sm">Add to cart</button>
+										<button id="btnAction"className="btnClsAction btn btn-primary btn-md-3">Add to cart</button>
 									</span></div>
 								</td></tr>
 								</tbody>
@@ -70,7 +70,7 @@ export const BannerComponent = (props) => {
 					</div>
 				</div>
             </div>
-        </section>
+
 
         <div id="chatbot" className="fixed-right-bottom">            
 			<div  className="panel panel-primary">
@@ -89,6 +89,8 @@ export const BannerComponent = (props) => {
             </div>            
 			</div>
         </div>
+
+        </section>
 
         </div>
         </React.Fragment>

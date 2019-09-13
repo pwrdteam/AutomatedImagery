@@ -1,3 +1,21 @@
+html, body{
+    width:100%;
+    height:100%;
+}
+body{
+    /* background-image: linear-gradient(red, yellow); */
+    /* background-color: #1fc8db;*/
+    /* background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);  */
+    
+    background-image: url("./images/bluebg.png");
+    /* background-image: url("http://wallperio.com/data/out/251/minimal-wallpapers_609412072.jpg"); */
+    /* background-image: url("http://www.4usky.com/data/out/67/164601898-origami-wallpapers.jpg"); */
+    background-size: contain;
+    animation: shrink 5s infinite alternate;
+    background-position: top;
+}
+
+
 header{
     position: relative;
     margin:0;
@@ -18,6 +36,23 @@ i.white{
     /* justify-content: space-between; */
     align-items: center;
     justify-content: center;
+}
+#top-bar div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#top-bar div a{
+text-decoration: none;
+}
+#top-bar div a:hover{
+    text-decoration: none;
+}
+#top-bar #btnDownloadImg{
+    position: absolute;
+    right:0;
+    top:15%;
+    width: 8%;
 }
 #top-bar h2{
     position: relative;
@@ -61,8 +96,10 @@ i.white{
     border-radius: 5px;
 }
 .subheading{
-    padding: 1% 2%;
-    background-color: #17a2b8;
+    padding: 2%;
+    /* background-color: #17a2b8; */
+    background-color: #1c8ac9;
+    
     color: #fff;
     font-size: 15pt;
 }
@@ -147,15 +184,18 @@ textarea#response::-webkit-scrollbar-thumb:hover {
     top: 18%;
 }
 .dwnload{
-	background: url(./images/download.png) no-repeat;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    background-position: center;
+    background: url("./images/down_load.png") no-repeat;
+    height: 100%;
+    width: 100%;
+    /* border-radius: 50%; */
+    background-position: right;
     transition: all ease 0.5s;
-    -webkit-animation: opacity 0.5s; /* Safari 4.0 - 8.0 */
     animation: opacity 0.5s;
     display: block;
+    background-size: contain;
+}
+#banner-pnl{
+    transition:all 1s ease-in;
 }
 #banner-pnl ul.nav li{
  cursor: pointer;
@@ -171,15 +211,34 @@ textarea#response::-webkit-scrollbar-thumb:hover {
     padding: 0.2rem;
     border-radius: 5px;
 }
+#adBannerDiv p{
+    text-align: center;
+    display: flex;
+    position: inherit;
+    text-align: center;
+    animation: mymove .5s forwards;
+    transition: all .5s ease-in;
+    flex-flow: wrap;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 
-
+span.dvClsAction{
+    /* position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%; */
+}
 
 
 .tab-content{
     margin:0;
     padding:1rem;
     border:1px solid #17a2b8;
-    border-radius: 2px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .nav-tabs .nav-item{
     margin-bottom: -1px
@@ -204,73 +263,107 @@ textarea#response::-webkit-scrollbar-thumb:hover {
     text-align: center;
 	/* color: #d17c7c; */
 	/* color: #00bfff; */
-	color: #00FFFF;
-	font-style: oblique;
-	position: absolute;
-	top: 284px;
-	background-color: tomato;
+	color: #fff;
+    font-style: oblique;
+    padding:1% 2%;
+    background-color:transparent;
+    margin-bottom: 10%;
 }
 .dvWebClsText{
     margin: 75px auto;
     font-size: 20px;
     text-align: center;
-	color: #00FFFF;
-	background-color: tomato;
+    color: #fff;
+    background-color: transparent;
     position: absolute;
-    left: -298px;
+    right: 25%;
+    width: 100%;
 
 }
 
 #btnAdAction
 {
 	color: #00FF00;
-	position: absolute;
-	left: 81px;
-	top: 315px;
+
 }
 
 
 #btnAction
 {
 	color: #00FF00;
-	position: absolute;
-    top: 196px;
+
 }
 
 #dvAdDesc{
 	margin: 0 auto;
     text-align: center; 
+    position: relative;
 }
 .BgImage {
-    /* background-image: linear-gradient(rgba(243, 235, 235, 0.5), rgba(243, 235, 235, 0.5)); */
-	border-radius: 8px;
+   /* background-image: linear-gradient(rgba(243, 235, 235, 0.5), rgba(243, 235, 235, 0.5)); */
+   border-radius: 8px;
     height: 350px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    margin: 2% 10;
-    -webkit-animation: scale-3d 1s;
+    margin: 1%;
+    /* padding: 1%; */
     animation: scale-3d 1s;
-	display: inline-block;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    animation: mymove .5s forwards;
+    transition: all .5s ease-in;
+    max-width: 23%;
+
+
 }
+.webBgImage {
+    /* background-image: linear-gradient(rgba(243, 235, 235, 0.5), rgba(243, 235, 235, 0.5)); */
+    border-radius: 8px;
+    height: 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin: 1%;
+    /* padding: 1%; */
+    animation: scale-3d 1s;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    -webkit-animation: mymove .5s forwards; /* Safari 4.0 - 8.0 */
+    animation: mymove .5s forwards;
+    transition: all .5s ease-in;
+ 
+ }
+ 
+
 #dvImage{
     position: absolute;
     top: 5px;
+    left: 0;
+    transition:all 0.5s ease-in;
     /* display: inline-flex; */
 }
 #dvDesc{
     position: absolute;
-    right: 2%;
+    right: 5%;
+    display: flex;
+    text-align: center;
 }
 .imgFront {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
-    right: -13rem;
+    right: -10rem;
     min-width: 10%;
     width: 250px;
+    top: 50%;
 }
 
 .imgMax{
@@ -283,17 +376,21 @@ textarea#response::-webkit-scrollbar-thumb:hover {
 	margin-top: 10px;
 }
 .imgBack {
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 8px;
-	width: 250px;
-	top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    width: 190px;
+    top: 15%;
 }
 
 .ConvMe{
 text-align:right;
 width:auto;
 position: relative;
+-webkit-animation: mymove 1s forwards; /* Safari 4.0 - 8.0 */
+animation: mymove 1s forwards;
+transition: all 1s ease-in;
+
 }
 .ConvCB{
     text-align: left;
@@ -302,7 +399,9 @@ position: relative;
     padding: 1%;
     position: relative;
     padding-left: 3%;
-    display: flex;  
+    display: flex;    -webkit-animation: mymove 1s forwards; /* Safari 4.0 - 8.0 */
+    animation: mymove 1s forwards;
+    transition: all 1s ease-in;
     
 }
 
@@ -314,6 +413,7 @@ position: relative;
     border: 1px solid skyblue;
     font-size:1rem;
     position: relative;
+    transition: all 1s ease-in-out;
 }
 .ConvCB p{
     background-color: #8bcdd82e;
@@ -328,6 +428,8 @@ position: relative;
     line-height: 0.5rem;
     text-align: justify;
     line-height: 23px;
+    transition: all 1s ease-in-out; 
+
 }
 
 .ConvCB:before{
@@ -343,7 +445,8 @@ position: relative;
 }
 
 .chatbot_initial{
-    transform:matrix(1, 0, 0, 1, 0, 8.78)
+    transform:matrix(1, 0, 0, 1, 0, 8.78);
+    transition: all .4s ease-in;
 }
 
 #hdnBannerdisplayBanner, #hdnBanner{
@@ -353,8 +456,10 @@ position: relative;
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    /* border: 1px solid #ccc; */
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /* background-color: #f1f1f1; */
     display: none;
   }
   
@@ -366,25 +471,91 @@ position: relative;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+    transition: all 0.3s ease-in;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
   }
   
   /* Change background color of buttons on hover */
   .tab button:hover {
     background-color: #ddd;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
   }
   
   /* Create an active/current tablink class */
   .tab button.active {
     background-color: #ccc;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
   }
   
   /* Style the tab content */
   .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 2%;
     border: 1px solid #ccc;
-    border-top: none;
+    background-color: #fff;
+    /* border-top: none; */
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    min-height: 400px;
+
   }
-  
+  @keyframes shrink {
+    0% {
+      background-size: 105% 105%;
+    }
+    100% {
+      background-size: 100% 100%;
+    }
+  }
+
+@keyframes mymove {
+    from {transform:scale(0.6);}
+    to {transform:scale(1);}
+}
+
+@-webkit-keyframes bgAnimate {
+    0% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    50% {
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+}
+@keyframes bgAnimate {
+    0% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    50% {
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+}
+@-moz-keyframes bgAnimate {
+    0% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    50% {
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+}

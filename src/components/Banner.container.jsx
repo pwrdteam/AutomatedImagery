@@ -349,7 +349,7 @@ export default class BannerContainer extends Component {
 		let chatbotElement = document.getElementById('chatbot');
 		let currTransform = getComputedStyle(chatbotElement).transform;
 		if(currTransform === constVal.fixedMatrixVal || currTransform === 'none'){
-			chatbotElement.style.transform = "translateY(94%)";
+			chatbotElement.style.transform = "translateY(92%)";
 		}
 		else{
 			chatbotElement.style.transform = constVal.fixedMatrixVal;
